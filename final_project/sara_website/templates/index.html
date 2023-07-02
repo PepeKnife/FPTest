@@ -1,0 +1,193 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static './CSS/styles.css' %}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.css"
+        integrity="sha512-Z0kTB03S7BU+JFU0nw9mjSBcRnZm2Bvm0tzOX9/OuOuz01XQfOpa0w/N9u6Jf2f1OAdegdIPWZ9nIZZ+keEvBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="{% static './JS/app.js' %}"></script>
+
+
+    <title>Sara Portfolio</title>
+</head>
+
+<body>
+    <section id="header">
+        <div class="container">
+            <div class="left">
+                <h1>IM SARA</h1>
+                <div class="bar"></div>
+                <p class="shadow-txt">I am an artist</p>
+            </div>
+            <div class="right"></div>
+        </div>
+    </section>
+
+    <section id="nav">
+        <div class="container">
+            <ul>
+                <li id="about-me-btn">
+                    <h3>about me</h3>
+                    <div class="indicator" id="abt-indi">
+                        <div class="indi-1" id="abt-indi-1"></div>
+                        <div class="indi-2" id="abt-indi-2"></div>
+                    </div>
+                </li>
+                <li id="paints-btn">
+                    <h3>paints</h3>
+                    <div class="indicator">
+                        <div class="indi-1" id="paint-indi-1"></div>
+                        <div class="indi-2" id="paint-indi-2"></div>
+                    </div>
+                </li>
+                <li id="writings-btn">
+                    <h3>writings</h3>
+                    <div class="indicator">
+                        <div class="indi-1" id="writings-indi-1"></div>
+                        <div class="indi-2" id="writings-indi-2"></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <main id="about-me-section">
+        <section id="quotes">
+            <div class="display-quotes">
+
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+
+
+                <div class="slideshow-container">
+
+                    {% for ca in carousel_items %}
+                        <div class="mySlides fade">
+                            <div class="content">
+                                <h4>{{ ca.text }}</h4>
+                                <p class="shadow-txt">~{{ ca.owner }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+            </div>
+            <br>
+
+            <div style="text-align:center">
+                {% for ca_dot in carousel_items %}
+                    <span class="dot" onclick="currentSlide({{ ca_dot.num }})"></span>
+                {% endfor %}
+                
+            </div>
+        </section>
+
+
+        <section id="about-me" class="container">
+            <div class="mobile-version">
+                <div class="container">
+                    <div class="top">
+                        <div class="left">
+                            <h2>about me</h2>
+                            <div class="bars">
+                                <div class="bar1"></div>
+                                <div class="bar2"></div>
+                            </div>
+                        </div>
+
+                        <div class="right">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                    </div>
+
+                    <div class="bottom">
+                        <div>
+                            <p>
+                                {{ about_me.text }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="desk-version">
+                <div class="container">
+                    <div class="left">
+                        <h2>about me</h2>
+                        <div class="bars">
+                            <div class="bar1"></div>
+                            <div class="bar2"></div>
+                        </div>
+                    </div>
+
+                    <div class="mid">
+                        <div>
+                            <p>
+                                {{ about_me.text }}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="right">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <main id="paintings">
+        <div class="container">
+            <ul>
+                {% for p in paints %}
+                    <li>
+                        <div class="paint img" style="background:url('{{ p.paint_img.url }}');  background-position: center center;
+                        background-size: cover;"></div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </main>
+
+    <main id="writings">
+        <div class="container">
+            <ul>
+                {% for wr in writings %}
+                    <li>
+                        <div class="writing">
+                            <p>{{ wr.text }}</p>
+                        </div>
+                    </li>
+                {% endfor %}
+
+            </ul>
+        </div>
+    </main>
+    <script src="{% static './JS/carousel.js' %}"></script>
+    <footer>
+        <p class="shadow-txt">Encuentrame!</p>
+        <div class="social-links">
+            <ul>
+                <li><a href="https://www.instagram.com/sararm.17/"><i class="fa-brands fa-instagram"></i></a></li>
+                <li><a href="https://www.youtube.com/@sararodriguezmoreno2951"><i class="fa-brands fa-youtube"></i></a>
+                </li>
+                <li><a href="https://www.tiktok.com/@sararm.17?_t=8dMVud3lwW6&_r=1"><i class="fa-brands fa-tiktok"></i>
+                </li>
+            </ul>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>

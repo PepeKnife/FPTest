@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sara web page</title>
+    <link rel="stylesheet" href="{% static './CSS/styles.css' %}">
+</head>
+
+<body>
+
+    <div class="log-container">
+        <div class="log-card">
+            {% if message %}
+                <div class="err-msg">
+                    <p>{{ message }}</p>
+                </div>
+            {% endif %}
+
+            <form method="POST" action="{% url 'login' %}">
+                {% csrf_token %}
+                <div>
+                    <label>Username: </label>
+                    <input type="text" name="username">
+                </div>
+                <div>
+                    <label>Password: </label>
+                    <input type="password" name="password">
+                </div>
+                
+                <input type="submit" value ="Login">
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>
